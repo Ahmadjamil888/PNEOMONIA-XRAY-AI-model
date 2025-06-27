@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COVID-19 X-ray Detector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    input[type="file"] {
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    img {
+      max-width: 300px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>PNEUMONIA X-ray Detection</h1>
+  <input type="file" id="xrayInput" accept="image/*">
+  <br>
+  <button onclick="uploadXray()">Predict</button>
+
+  <p id="result"></p>
+  <img id="preview" />
+
+  <script>
+    async function uploadXray() {
+      const input = document.getElementById('xrayInput');
+      const file = input.files[0];
+
+      if (!file) {
+        alert("Please select an image file first.");
+        return;
+      }
+
+      // Show preview
+      const preview = document.getElementById('preview');
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+
+      // Prepare the request
+      const formData = new FormData();
+      formData.append('xray', file);
+
+      // Send to backend
+      const response = await fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      document.getElementById('result').innerText = `Prediction: ${data.result}`;
+    }
+  </script>
+</body>
+</html>
