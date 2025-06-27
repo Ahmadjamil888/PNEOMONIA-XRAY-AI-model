@@ -82,10 +82,15 @@ python app.py
 ```
 
 This will start the backend at `http://localhost:5000`.
-
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/PNEOMONIA-XRAY-AI-model/refs/heads/main/Screenshot%202025-06-27%20132838.png">
 ### 4. Use the Frontend
 
 Open `static/index.html` in your web browser. Upload an X-ray image, and the system will return a prediction: **NORMAL** or **PNEUMONIA**.
+### NORMAL
+  <img src="https://raw.githubusercontent.com/Ahmadjamil888/PNEOMONIA-XRAY-AI-model/refs/heads/main/Screenshot%202025-06-27%20132902.png">
+
+### PNEUMONIA
+  <img src="https://raw.githubusercontent.com/Ahmadjamil888/PNEOMONIA-XRAY-AI-model/refs/heads/main/Screenshot%202025-06-27%20132925.png">
 
 ## Model Information
 
